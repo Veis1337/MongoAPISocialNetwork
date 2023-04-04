@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const { Schema, Types, model } = require('mongoose');
 const mongoose = require('mongoose');
 
 const thoughtSchema = require('./thoughts');
@@ -9,19 +9,18 @@ const userSchema = new Schema(
       type: Schema.Types.ObjectId,
       default: () => new Types.ObjectId(),
     },
-    username: {
+    userName: {
       type: String,
       required: true,
       unique: true,
       trim: true,
     },
     email: {
-      type: String, validate:    
-      function (val) {
-        return val.match(/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/);
-      },
+      type: String,          
       required: true,
       unique: true,
+      // match: /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/,
+      trim: true,
     },
     thoughts: [
       {
