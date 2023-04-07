@@ -1,5 +1,6 @@
 const { Schema, Types, model } = require('mongoose');
 const mongoose = require('mongoose');
+const friendSchema = require('./friendSchema');
 
 const thoughtSchema = require('./thoughts');
 
@@ -32,17 +33,13 @@ const userSchema = new Schema(
         ref: 'Thoughts',
       },
     ],
-    friends: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Users',
-      },
-    ],
+    friends: [friendSchema],
   },
 
     {
     toJSON: {
       virtuals: true,
+      getters: true,
     },
     id: false,
   },
@@ -55,6 +52,6 @@ userSchema
   return this.friends.length;
 });
 
-const Users = model('Users', userSchema);
+const Users = model('User', userSchema);
 
 module.exports = Users;

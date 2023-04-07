@@ -67,6 +67,20 @@ module.exports = {
       });
   },
 
+    // Update a Thought
+    updateThought(req, res) {
+      Thought.findOneAndUpdate(
+        { _id: req.params.thoughtId },
+        { $set: req.body }
+      )
+        .then((thought) =>
+          !thought
+            ? res.status(404).json({ message: 'Could not find a Thought with that ID' })
+            : res.json(thought)
+        )
+        .catch((err) => res.status(500).json(err));
+    },
+
   // Add a Reaction
   addReaction(req, res) {
     Thought.findOneAndUpdate(
@@ -88,7 +102,7 @@ module.exports = {
   removeReaction(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
-      { $pull: { reaction: { reactionId: req.params.reactionId } } },
+      { $pull: { reactions: { _id: req.params.reactionId } } },
       { runValidators: true, new: true }
     )
       .then((thought) =>
