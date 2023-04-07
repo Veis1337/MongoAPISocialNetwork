@@ -12,10 +12,8 @@ Node server.js in terminal, then use insomnia for testing routes.
 Screenshot
 ![](./media/Screenshot%202023-04-07%20154102.png)
 
-
-Video
-![](./media/Untitled_%20Apr%207%2C%202023%203_59%20PM.mp4)
-
+Demonstration Video --
+![VideoSubmission](./media/Untitled_%20Apr%207%2C%202023%203_59%20PM.mp4)
 
 
 ## Credits
