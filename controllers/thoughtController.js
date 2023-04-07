@@ -27,7 +27,6 @@ module.exports = {
           ? res.status(404).json({ message: 'No Thought with that ID' })
           : res.json({
               thought,
-              grade: await grade(req.params.thoughtId),
             })
       )
       .catch((err) => {
@@ -58,7 +57,7 @@ module.exports = {
       .then((user) =>
         !user
           ? res.status(404).json({
-              message: 'Thought deleted, but could not find User',
+              message: 'Thought deleted',
             })
           : res.json({ message: 'Thought deleted' })
       )
